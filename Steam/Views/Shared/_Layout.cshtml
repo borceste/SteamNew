@@ -1,44 +1,160 @@
-﻿<!DOCTYPE html>
+﻿<!--Color scheme: #2F1F57; #111735; #644C99-->
+
+<!DOCTYPE html>
 <html>
 <head>
+    <style>
+        html {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .valveLogo {
+            float: left;
+            padding: 0.5em 1em 0em 0.5em;
+        }
+
+        #copyright p {
+            display: inline;
+            text-align: left;
+        }
+        .game {
+            background-color: blueviolet;
+            width: 50%;
+            height: 15%;
+            display: block;
+            margin: 5px auto;
+        }
+
+        .cover-image {
+            max-height: 80%;
+            max-width: 20%;
+            object-fit: contain;
+            float: left;
+        }
+
+        .name {
+            display: inline-block;
+            float: left;
+        }
+
+        .price {
+            display: inline-block;
+            float: right;
+        }
+
+        .linedText {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .discount {
+            float: right;
+        }
+        
+    </style>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/layoutCSS/main.css")
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="Content\layoutJS\main.js" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header" class="wrapper">
+
+            <!-- Logo -->
+            <div id="logo">
+                <h1>@Html.ActionLink("STEAM", "Index", "Home")</h1>
+                <p>The best game shop on the internet</p>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li class="current">@Html.ActionLink("Store", "Index", "Home")</li>
+                    <li>
+                        <a href="#">Dropdown</a>
+                        <ul>
+                            <li><a href="#">Lorem ipsum</a></li>
+                            <li><a href="#">Magna veroeros</a></li>
+                            <li><a href="#">Etiam nisl</a></li>
+                            <li>
+                                <a href="#">Sed consequat</a>
+                                <ul>
+                                    <li><a href="#">Lorem dolor</a></li>
+                                    <li><a href="#">Amet consequat</a></li>
+                                    <li><a href="#">Magna phasellus</a></li>
+                                    <li><a href="#">Etiam nisl</a></li>
+                                    <li><a href="#">Sed feugiat</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Nisl tempus</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="left-sidebar.html">Left Sidebar</a></li>
+                    <li><a href="right-sidebar.html">Right Sidebar</a></li>
+                    <li><a href="no-sidebar.html">No Sidebar</a></li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+            </nav>
+
+        </section>
+        <div id="main-background">
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <!-- Footer -->
+        <section id="footer" class="wrapper">
+
+            <div class="container">
+                <br />
+                <div id="copyright">
+                    <img class="valveLogo" src="@Url.Content(@"~\Content\Photos\logo_valve_footer.png")">
+                    <p>
+                        © 2019 Valve Corporation. All rights reserved. All trademarks are property of their respective owners in the US and other countries.
+                        VAT included in all prices where applicable.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Privacy Policy", "PrivacyPolicyAgreement", "LegalInfomation")
+                        |
+                        @Html.ActionLink("Legal", "Index", "LegalInfomation")
+                        |
+                        @Html.ActionLink("Steam Subscriber Agreement", "SteamSubscriberAgreement", "LegalInfomation")
+                        |
+                        @Html.ActionLink("Refunds", "SteamRefunds", "LegalInfomation")
+                    </p>
+
+                    <hr />
+                </div>
+
+            </div>
+        </section>
+
+
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <!-- Scripts -->
+    
+    <script src="\Content\layoutJS\jquery.dropotron.min.js"></script>
+    <script src="\Content\layoutJS\browser.min.js"></script>
+    <script src="\Content\layoutJS\breakpoints.min.js"></script>
+    <script src="\Content\layoutJS\util.js"></script>
+    <script src="\Content\layoutJS\main.js"></script>
+    
 </body>
 </html>
