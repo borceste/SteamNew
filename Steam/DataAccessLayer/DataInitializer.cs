@@ -113,7 +113,7 @@ namespace Steam.DataAccessLayer
      
     protected override void Seed(DataClass context)
         {
-            //  This method will be called after migrating to the latest version.
+           /* //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
@@ -382,7 +382,7 @@ namespace Steam.DataAccessLayer
 
             gamesList.ForEach(g => context.Games.Add(g));
             context.SaveChanges();
-
+            */
         }
 
         private void SerializeObject(List<string> slenderImages, string slenderName)

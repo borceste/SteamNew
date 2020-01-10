@@ -13,38 +13,42 @@ namespace Steam.Models
     public class Game
     {
         [Key]
-        public int Id { get; set; }
+        public int GameId { get; set; }
         public String name { get; set; }
         public float price { get; set; }
-        public String listOfImages { get; set; }
-        [NotMapped]
-        public List<string> images { get; set; }
         public string coverImage { get; set; }
         public String description { get; set; }
         public String developer { get; set; }
         public float rating { get; set; }
-        public List<Review> reviews { get; set; }
-        public float discount { get; set; }
-        public Genre genre { get; set; }
+
+        
+        public virtual ICollection<GameImage> GameImages { get; set; }
+        
+        public virtual ICollection<Review> Reviews { get; set; }
+        
+        public virtual ICollection<User> Users { get; set; }
+     
+        public virtual ICollection<Genre> Genres { get; set; }
+
+
         public int sold { get; set; }
+        public float discount { get; set; }
         public DateTime dateAdded { get; set; }
         public float DiscountedPrice { get { return price - (price * discount / 100); } }
-        public Game(int Id, String name, float price, List<string> images, string listOfImages, string coverImage,
-            string description, String developer, float rating, List<Review> reviews,
-            float discount, Genre genre, int sold, DateTime dateAdded)
+        public Game(int Id, String name, float price, string coverImage,
+            string description, String developer, float rating, HashSet<Review> reviews,
+            float discount, HashSet<Genre> genres, int sold, DateTime dateAdded)
         {
-        this.Id = Id;
+        this.GameId = Id;
         this.name = name;
         this.price = price;
-        this.images = images;
-        this.listOfImages = listOfImages;
         this.coverImage = coverImage;
         this.description = description;
         this.developer = developer;
         this.rating = rating;
-        this.reviews = reviews;
+        this.Reviews = reviews;
         this.discount = discount;
-        this.genre = genre;
+        this.Genres = genres;
         this.sold = sold;
         this.dateAdded = dateAdded;
     }
@@ -53,7 +57,9 @@ namespace Steam.Models
             discount = 0;
             price = 0;
             //images = new List<string>();
-            reviews = new List<Review>();
+            Reviews = new HashSet<Review>();
+            Genres = new HashSet<Genre>();
+            Users = new HashSet<User>();
             sold = 0;
             dateAdded = DateTime.Now;
         }

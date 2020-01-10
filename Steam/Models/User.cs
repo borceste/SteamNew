@@ -1,33 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 using System.Linq;
 using System.Web;
-
+using Steam.Models;
 namespace Steam.Models
 {
     public class User
     {   
-        //Add getGame for single game etc.
+        
         [Key]
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public String nickname { get; set; }
         public string avatar { get; set; }
         public String info { get; set; }
         public int level { get; set; }
-        public List<Game> ownedGames { get; set; }
-        public List<Game> wishlistedGames { get; set; }
-        public List<Review> reviews { get; set; }
-        private List<Comment> comments { get; set; }
+      
+        
+        public virtual ICollection<Comment> Comments { get; set; }
+        
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Game> ownedGames { get; set; }
+        public virtual ICollection<Game> wishlistedGames { get; set; }
+
         public User()
         {
             info = "No information given.";
             this.level = 1;
-            this.ownedGames = new List<Game>();
-            this.wishlistedGames = new List<Game>();
-            this.reviews = new List<Review>();
-            this.comments = new List<Comment>();
+            this.ownedGames = new HashSet<Game>();
+            this.wishlistedGames = new HashSet<Game>();
+            //this.reviews = new List<Review>();
+            this.Reviews = new HashSet<Review>();
+            this.Comments = new HashSet<Comment>();
         }
         /*public String getNickname()
         {

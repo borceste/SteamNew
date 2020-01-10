@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Xml;
 using System.Xml.Serialization;
-using Steam.DataAccessLayer;
+
 using Steam.Models;
 
 namespace Steam.Controllers
@@ -110,9 +110,9 @@ namespace Steam.Controllers
         public ActionResult Index()
         {
 
-            
-            
-            DataClass dataClass = new DataClass();
+
+
+            /*DataClass dataClass = new DataClass();
             List<Game> games = dataClass.Games.ToList();
             List<Game> newGames = new List<Game>();
             foreach(Game g in games)
@@ -135,12 +135,13 @@ namespace Steam.Controllers
                 
             }
 
-            return View(newGames);
+            return View(newGames);*/
+            return View();
         }
 
         public PartialViewResult Tabs(String typeOfTab)
         {
-            DataClass dataClass = new DataClass();
+            /*DataClass dataClass = new DataClass();
             List<Game> games = dataClass.Games.ToList();
             List<Game> result = null;
             switch (typeOfTab)
@@ -181,7 +182,8 @@ namespace Steam.Controllers
                                           select game).Take(10).ToList();
                     break;
             }
-            return PartialView(result);
+            return PartialView(result);*/
+            return PartialView();
         }
 
         public ActionResult About()

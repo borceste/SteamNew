@@ -9,12 +9,13 @@ namespace Steam.Models
     public class Genre
     {
         [Key]
-        public int Id { get; set; }
+        public int GenreId { get; set; }
         public String name { set; get; }
-        public List<Game> games { get; set; }
+        public virtual ICollection<Game> Games { get; set; }
+       
         public Genre()
         {
-            games = new List<Game>();
+            Games = new HashSet<Game>();
         }
         public Genre(String name)
         {

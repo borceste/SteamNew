@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,8 +10,14 @@ namespace Steam.Models
     public class Review
     {
         [Key]
-        public int Id { get; set; }
-        public User user { get; set; }
+        public int ReviewId { get; set; }
+        public Nullable<int> GameId { get; set; }
+        public Nullable<int> UserId { get; set; }
+        
+        public virtual User User { get; set; }
+       
+        public virtual Game Game { get; set; }
+       
         public String review { get; set; }
         public float rating { get; set; }
         public DateTime date { get; set; }
@@ -20,7 +27,7 @@ namespace Steam.Models
         }
         public Review(User user,String review,float rating)
         {
-            this.user = user;
+            //this.user = user;
             this.review = review;
             this.rating = rating;
             this.date = DateTime.Now;
