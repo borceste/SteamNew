@@ -12,6 +12,18 @@ namespace Steam.Models
 {
     public class Game
     {
+        public Game()
+        {
+            this.Reviews = new HashSet<Review>();
+            this.Genres = new HashSet<Genre>();
+            this.ApplicationUsersOwned = new HashSet<ApplicationUser>();
+            this.ApplicationUsersWish = new HashSet<ApplicationUser>();
+            this.GameImages = new HashSet<GameImage>();
+            discount = 0;
+            price = 0;
+            sold = 0;
+            dateAdded = DateTime.Now;
+        }
         [Key]
         public int GameId { get; set; }
         public String name { get; set; }
@@ -25,10 +37,14 @@ namespace Steam.Models
         public virtual ICollection<GameImage> GameImages { get; set; }
         
         public virtual ICollection<Review> Reviews { get; set; }
-        
-        public virtual ICollection<User> Users { get; set; }
-     
         public virtual ICollection<Genre> Genres { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUsersOwned { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUsersWish { get; set; }
+
+        
+
+
+
 
 
         public int sold { get; set; }
@@ -51,18 +67,8 @@ namespace Steam.Models
         this.Genres = genres;
         this.sold = sold;
         this.dateAdded = dateAdded;
-    }
-        public Game()
-        {
-            discount = 0;
-            price = 0;
-            //images = new List<string>();
-            Reviews = new HashSet<Review>();
-            Genres = new HashSet<Genre>();
-            Users = new HashSet<User>();
-            sold = 0;
-            dateAdded = DateTime.Now;
         }
+        
         /*
         public int getID()
         {

@@ -14,7 +14,6 @@ namespace Steam.Models
 
         public Nullable<int> GameId { get; set; }
 
-        [ForeignKey("GameId")]
         public virtual Game Game { get; set; }
 
         public String UrlString { get; set; }

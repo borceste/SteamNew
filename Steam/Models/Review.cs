@@ -12,10 +12,10 @@ namespace Steam.Models
         [Key]
         public int ReviewId { get; set; }
         public Nullable<int> GameId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        
-        public virtual User User { get; set; }
+
        
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         public virtual Game Game { get; set; }
        
         public String review { get; set; }
@@ -25,7 +25,7 @@ namespace Steam.Models
         {
             date = DateTime.Now;
         }
-        public Review(User user,String review,float rating)
+        public Review(String review,float rating)
         {
             //this.user = user;
             this.review = review;

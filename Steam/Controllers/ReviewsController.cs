@@ -17,7 +17,7 @@ namespace Steam.Controllers
         // GET: Reviews
         public ActionResult Index()
         {
-            var reviews = db.Reviews.Include(r => r.Game).Include(r => r.User);
+            var reviews = db.Reviews.Include(r => r.Game);
             return View(reviews.ToList());
         }
 
@@ -40,7 +40,6 @@ namespace Steam.Controllers
         public ActionResult Create()
         {
             ViewBag.GameId = new SelectList(db.Games, "GameId", "name");
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "nickname");
             return View();
         }
 
@@ -49,7 +48,7 @@ namespace Steam.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReviewId,UserId,GameId,review,rating,date")] Review review)
+        public ActionResult Create([Bind(Include = "ReviewId,GameId,review,rating,date")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +58,6 @@ namespace Steam.Controllers
             }
 
             ViewBag.GameId = new SelectList(db.Games, "GameId", "name", review.GameId);
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "nickname", review.UserId);
             return View(review);
         }
 
@@ -76,7 +74,6 @@ namespace Steam.Controllers
                 return HttpNotFound();
             }
             ViewBag.GameId = new SelectList(db.Games, "GameId", "name", review.GameId);
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "nickname", review.UserId);
             return View(review);
         }
 
@@ -85,7 +82,7 @@ namespace Steam.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReviewId,UserId,GameId,review,rating,date")] Review review)
+        public ActionResult Edit([Bind(Include = "ReviewId,GameId,review,rating,date")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +91,6 @@ namespace Steam.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.GameId = new SelectList(db.Games, "GameId", "name", review.GameId);
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "nickname", review.UserId);
             return View(review);
         }
 

@@ -13,24 +13,27 @@ namespace Steam.Models
         public int CommentId { get; set; }
         private String comment;
         private DateTime date;
-        public virtual User User { get; set; }
 
-        public Nullable<int> UserId { get; set; }
+
+       
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
+       
 
         public Comment()
         {
             date = DateTime.Now;
         }
-        public Comment(User user, String comment)
+        public Comment(String comment)
         {
-            //this.user = user;
+            
             this.comment = comment;
             this.date = DateTime.Now;
         }
-        public void setUser(User user)
+        /*public void setUser(User user)
         {
             //this.user = user;
-        }
+        }*/
         public void setComment(String comment)
         {
             this.comment = comment;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -10,6 +11,31 @@ namespace Steam.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser() {
+            this.Comments = new HashSet<Comment>();
+            this.Reviews = new HashSet<Review>();
+            this.ownedGames = new HashSet<Game>();
+            this.wishlistedGames = new HashSet<Game>();
+
+            this.nickname = "";
+            this.avatar = "";
+            this.info = "";
+            this.level = 0;
+                 
+        
+        }
+        public String nickname { get; set; }
+        public string avatar { get; set; }
+        public String info { get; set; }
+        public int level { get; set; }
+
+
+        public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Game> ownedGames { get; set; }
+        public virtual ICollection<Game> wishlistedGames { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -23,7 +49,7 @@ namespace Steam.Models
     {
         public DbSet<Game> Games { get; set; }
         public DbSet<Review> Reviews { get; set; }
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
@@ -37,5 +63,7 @@ namespace Steam.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Steam.Models.GameImage> GameImages { get; set; }
     }
 }

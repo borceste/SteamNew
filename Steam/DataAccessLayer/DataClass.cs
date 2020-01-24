@@ -10,18 +10,18 @@ namespace Steam.DataAccessLayer
 {
     public class DataClass : DbContext
     {
-        public DataClass() : base("DataClass")
+        public DataClass() : base("DefaultConnection")
         {
 
 
         }
-        public DbSet<Game> Games { get; set; }
+        /*public DbSet<Game> Games { get; set; }
         public DbSet<GameImage> GameImages {get;set;}
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
+        */
         
     }
 }
