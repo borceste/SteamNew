@@ -8,10 +8,39 @@ using System.Xml;
 using System.IO;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
+
+
 namespace Steam.Models
 {
     public class Game
     {
+
+
+        [Key]
+        public int GameId { get; set; }
+        public String name { get; set; }
+        public float price { get; set; }
+        public GameImage coverImage { get; set; }
+        public String description { get; set; }
+        public String developer { get; set; }
+        public float rating { get; set; }
+
+
+        public virtual ICollection<GameImage> GameImages { get; set; }
+
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Genre> Genres { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUsersOwned { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUsersWish { get; set; }
+
+
+        public int sold { get; set; }
+        public float discount { get; set; }
+        public DateTime dateAdded { get; set; }
+        public float DiscountedPrice { get { return price - (price * discount / 100); } }
+
+
         public Game()
         {
             this.Reviews = new HashSet<Review>();
@@ -24,51 +53,42 @@ namespace Steam.Models
             sold = 0;
             dateAdded = DateTime.Now;
         }
-        [Key]
-        public int GameId { get; set; }
-        public String name { get; set; }
-        public float price { get; set; }
-        public string coverImage { get; set; }
-        public String description { get; set; }
-        public String developer { get; set; }
-        public float rating { get; set; }
 
-        
-        public virtual ICollection<GameImage> GameImages { get; set; }
-        
-        public virtual ICollection<Review> Reviews { get; set; }
-        public virtual ICollection<Genre> Genres { get; set; }
-        public virtual ICollection<ApplicationUser> ApplicationUsersOwned { get; set; }
-        public virtual ICollection<ApplicationUser> ApplicationUsersWish { get; set; }
+        public Game(String name, float price, string description, String developer, GameImage Image)
+        {
+            this.Reviews = new HashSet<Review>();
+            this.Genres = new HashSet<Genre>();
+            this.ApplicationUsersOwned = new HashSet<ApplicationUser>();
+            this.ApplicationUsersWish = new HashSet<ApplicationUser>();
+            this.GameImages = new HashSet<GameImage>();
+            discount = 0;
+            sold = 0;
+            dateAdded = DateTime.Now;
+            this.name = name;
+            this.price = price;
+            this.description = description;
+            this.developer = developer;
+            this.coverImage = Image;
+        }
 
-        
-
-
-
-
-
-        public int sold { get; set; }
-        public float discount { get; set; }
-        public DateTime dateAdded { get; set; }
-        public float DiscountedPrice { get { return price - (price * discount / 100); } }
-        public Game(int Id, String name, float price, string coverImage,
+        public Game(int Id, String name, float price, GameImage coverImage,
             string description, String developer, float rating, HashSet<Review> reviews,
             float discount, HashSet<Genre> genres, int sold, DateTime dateAdded)
         {
-        this.GameId = Id;
-        this.name = name;
-        this.price = price;
-        this.coverImage = coverImage;
-        this.description = description;
-        this.developer = developer;
-        this.rating = rating;
-        this.Reviews = reviews;
-        this.discount = discount;
-        this.Genres = genres;
-        this.sold = sold;
-        this.dateAdded = dateAdded;
+            this.GameId = Id;
+            this.name = name;
+            this.price = price;
+            this.coverImage = coverImage;
+            this.description = description;
+            this.developer = developer;
+            this.rating = rating;
+            this.Reviews = reviews;
+            this.discount = discount;
+            this.Genres = genres;
+            this.sold = sold;
+            this.dateAdded = dateAdded;
         }
-        
+
         /*
         public int getID()
         {
@@ -194,3 +214,7 @@ namespace Steam.Models
         }*/
     }
 }
+
+
+
+

@@ -169,19 +169,20 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
-    <Compile Include="Controllers\GameImagesController.cs" />
-    <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LegalInfomationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001232046028_initial.cs" />
-    <Compile Include="Migrations\202001232046028_initial.Designer.cs">
-      <DependentUpon>202001232046028_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202001251910568_xmark.cs" />
+    <Compile Include="Migrations\202001251910568_xmark.Designer.cs">
+      <DependentUpon>202001251910568_xmark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001251913470_torrent.cs" />
+    <Compile Include="Migrations\202001251913470_torrent.Designer.cs">
+      <DependentUpon>202001251913470_torrent.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -196,10 +197,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Start\appDatabase.mdf" />
-    <Content Include="App_Start\appDatabase_log.ldf">
-      <DependentUpon>appDatabase.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -221,7 +218,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -299,8 +298,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001232046028_initial.resx">
-      <DependentUpon>202001232046028_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001251910568_xmark.resx">
+      <DependentUpon>202001251910568_xmark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001251913470_torrent.resx">
+      <DependentUpon>202001251913470_torrent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

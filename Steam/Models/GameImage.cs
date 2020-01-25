@@ -10,6 +10,7 @@ namespace Steam.Models
     public class GameImage
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GameImageId { get; set; }
 
         public Nullable<int> GameId { get; set; }
@@ -18,6 +19,17 @@ namespace Steam.Models
 
         public String UrlString { get; set; }
 
-         
+         public GameImage(String Url)
+        {
+            this.UrlString = Url;
+        }
+
+        public GameImage(int GameId, string Url)
+        {
+            this.GameId = GameId;
+            this.UrlString = Url;
+        }
+
+
     }
 }
