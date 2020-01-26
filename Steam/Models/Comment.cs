@@ -15,7 +15,7 @@ namespace Steam.Models
         private DateTime date;
 
 
-       
+        public Nullable<int> ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
        

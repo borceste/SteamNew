@@ -3,7 +3,7 @@ namespace Steam.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class xmark : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -12,6 +12,7 @@ namespace Steam.Migrations
                 c => new
                     {
                         CommentId = c.Int(nullable: false, identity: true),
+                        ApplicationUserId = c.Int(),
                         ApplicationUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.CommentId)
@@ -76,6 +77,7 @@ namespace Steam.Migrations
                         price = c.Single(nullable: false),
                         coverImage = c.String(),
                         description = c.String(),
+                        shortDescription = c.String(),
                         developer = c.String(),
                         rating = c.Single(nullable: false),
                         sold = c.Int(nullable: false),
@@ -110,17 +112,17 @@ namespace Steam.Migrations
                 c => new
                     {
                         ReviewId = c.Int(nullable: false, identity: true),
+                        GameId = c.Int(),
                         review = c.String(),
                         rating = c.Single(nullable: false),
                         date = c.DateTime(nullable: false),
                         ApplicationUser_Id = c.String(maxLength: 128),
-                        Game_GameId = c.Int(),
                     })
                 .PrimaryKey(t => t.ReviewId)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
-                .ForeignKey("dbo.Games", t => t.Game_GameId)
-                .Index(t => t.ApplicationUser_Id)
-                .Index(t => t.Game_GameId);
+                .ForeignKey("dbo.Games", t => t.GameId)
+                .Index(t => t.GameId)
+                .Index(t => t.ApplicationUser_Id);
             
             CreateTable(
                 "dbo.AspNetUserRoles",
@@ -190,7 +192,7 @@ namespace Steam.Migrations
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Reviews", "Game_GameId", "dbo.Games");
+            DropForeignKey("dbo.Reviews", "GameId", "dbo.Games");
             DropForeignKey("dbo.Reviews", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.GenreGames", "Game_GameId", "dbo.Games");
             DropForeignKey("dbo.GenreGames", "Genre_GenreId", "dbo.Genres");
@@ -211,8 +213,8 @@ namespace Steam.Migrations
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
-            DropIndex("dbo.Reviews", new[] { "Game_GameId" });
             DropIndex("dbo.Reviews", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.Reviews", new[] { "GameId" });
             DropIndex("dbo.GameImages", new[] { "GameId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });

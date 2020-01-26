@@ -23,6 +23,7 @@ namespace Steam.Models
         public float price { get; set; }
         public String coverImage { get; set; }
         public String description { get; set; }
+        public String shortDescription { get; set; }
         public String developer { get; set; }
         public float rating { get; set; }
 
@@ -54,7 +55,7 @@ namespace Steam.Models
             dateAdded = DateTime.Now;
         }
 
-        public Game(String name, float price, string description, String developer, String Image)
+        public Game(String name, float price, string description, String shortDescription, String developer, String Image)
         {
             this.Reviews = new HashSet<Review>();
             this.Genres = new HashSet<Genre>();
@@ -67,12 +68,13 @@ namespace Steam.Models
             this.name = name;
             this.price = price;
             this.description = description;
+            this.shortDescription = shortDescription;
             this.developer = developer;
             this.coverImage = Image;
         }
 
         public Game(int Id, String name, float price, String coverImage,
-            string description, String developer, float rating, HashSet<Review> reviews,
+            string description, String shortDescription, String developer, float rating, HashSet<Review> reviews,
             float discount, HashSet<Genre> genres, int sold, DateTime dateAdded)
         {
             this.GameId = Id;
@@ -80,6 +82,7 @@ namespace Steam.Models
             this.price = price;
             this.coverImage = coverImage;
             this.description = description;
+            this.shortDescription = shortDescription;
             this.developer = developer;
             this.rating = rating;
             this.Reviews = reviews;

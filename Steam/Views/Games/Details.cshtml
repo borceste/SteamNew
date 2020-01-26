@@ -1,90 +1,88 @@
-﻿@model Steam.Models.Game
-
+﻿@using Steam.Models;
+@model Steam.Models.Game
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Game";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Game</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+<link href="~/Content/CSS/gameview.css" />
+<link href="~/Content/CSS/gameview.css" rel="stylesheet" />
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+@{
+    var gameData = ViewBag.Game;
+    IEnumerable<GameImage> images = ViewData["gameImages"] as IEnumerable<GameImage>;
+    IEnumerable<Review> reviews = ViewData["listReviews"] as IEnumerable<Review>;
+    
+}
+@section MyScripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".image-list img").click(function () {
+                var smth = $(this).index();
 
-        <dt>
-            @Html.DisplayNameFor(model => model.price)
-        </dt>
+                $(".carousel-inner div").removeClass("active");
+                $(`.carousel-inner div:nth-child(${smth + 1})`).addClass("active");
+            })
 
-        <dd>
-            @Html.DisplayFor(model => model.price)
-        </dd>
+        })
+    </script>
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.coverImage)
-        </dt>
+<div class="container">
+    <div class="upper-part">
+        <div class="left-part">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" class="custom-carousel">
+                <div class="carousel-inner">
+                    @{
+                        var first = true;
 
-        <dd>
-            @Html.DisplayFor(model => model.coverImage)
-        </dd>
+                    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
+                    @foreach (GameImage item in images)
+                    {
+                        <div class="item @(first?Html.Raw("active"):Html.Raw(""))">
+                            <img src="@item.UrlString">
+                        </div>
+                        first = false;
+                    }
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div class="image-list">
+                @foreach (GameImage item in images)
+                {
+                    <img src="@item.UrlString">
+                }
 
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
+            </div>
+        </div>
+        <div class="right-part">
+            <div class="cover-image">
+                <img src="@Model.coverImage">
+            </div>
+            <div class="description">
+                <p>
+                    @Model.shortDescription
+                </p>
+            </div>
+            <div class="other-info">
+                <p>DEVELOPER: @Model.developer</p>
+                
+            </div>
+        </div>
+    </div>
+    <div class="lower-part">
+        <div class="review-part">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.developer)
-        </dt>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.developer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.rating)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.sold)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.sold)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.discount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.discount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.dateAdded)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dateAdded)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GameId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
