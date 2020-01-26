@@ -176,13 +176,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001251910568_xmark.cs" />
-    <Compile Include="Migrations\202001251910568_xmark.Designer.cs">
-      <DependentUpon>202001251910568_xmark.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001251913470_torrent.cs" />
-    <Compile Include="Migrations\202001251913470_torrent.Designer.cs">
-      <DependentUpon>202001251913470_torrent.cs</DependentUpon>
+    <Compile Include="Migrations\202001261020477_xmark.cs" />
+    <Compile Include="Migrations\202001261020477_xmark.Designer.cs">
+      <DependentUpon>202001261020477_xmark.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -298,11 +294,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001251910568_xmark.resx">
-      <DependentUpon>202001251910568_xmark.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001251913470_torrent.resx">
-      <DependentUpon>202001251913470_torrent.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001261020477_xmark.resx">
+      <DependentUpon>202001261020477_xmark.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -11,9 +11,7 @@ namespace Steam.Models
     {
         [Key]
         public int ReviewId { get; set; }
-        public Nullable<int> GameId { get; set; }
-
-       
+        
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual Game Game { get; set; }

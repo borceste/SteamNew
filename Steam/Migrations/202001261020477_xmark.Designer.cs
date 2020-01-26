@@ -7,13 +7,13 @@ namespace Steam.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class torrent : IMigrationMetadata
+    public sealed partial class xmark : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(torrent));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(xmark));
         
         string IMigrationMetadata.Id
         {
-            get { return "202001251913470_torrent"; }
+            get { return "202001261020477_xmark"; }
         }
         
         string IMigrationMetadata.Source

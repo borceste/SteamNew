@@ -19,14 +19,10 @@ namespace Steam.Models
 
         public String UrlString { get; set; }
 
-         public GameImage(String Url)
+       
+        public GameImage(string Url)
         {
-            this.UrlString = Url;
-        }
-
-        public GameImage(int GameId, string Url)
-        {
-            this.GameId = GameId;
+            
             this.UrlString = Url;
         }
 
