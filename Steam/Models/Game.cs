@@ -21,7 +21,7 @@ namespace Steam.Models
         public int GameId { get; set; }
         public String name { get; set; }
         public float price { get; set; }
-        public GameImage coverImage { get; set; }
+        public String coverImage { get; set; }
         public String description { get; set; }
         public String developer { get; set; }
         public float rating { get; set; }
@@ -54,7 +54,7 @@ namespace Steam.Models
             dateAdded = DateTime.Now;
         }
 
-        public Game(String name, float price, string description, String developer, GameImage Image)
+        public Game(String name, float price, string description, String developer, String Image)
         {
             this.Reviews = new HashSet<Review>();
             this.Genres = new HashSet<Genre>();
@@ -71,7 +71,7 @@ namespace Steam.Models
             this.coverImage = Image;
         }
 
-        public Game(int Id, String name, float price, GameImage coverImage,
+        public Game(int Id, String name, float price, String coverImage,
             string description, String developer, float rating, HashSet<Review> reviews,
             float discount, HashSet<Genre> genres, int sold, DateTime dateAdded)
         {

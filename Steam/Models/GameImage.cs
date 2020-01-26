@@ -10,10 +10,10 @@ namespace Steam.Models
     public class GameImage
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+       
         public int GameImageId { get; set; }
 
-        public Nullable<int> GameId { get; set; }
+       
 
         public virtual Game Game { get; set; }
 

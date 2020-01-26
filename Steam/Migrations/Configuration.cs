@@ -19,7 +19,7 @@ namespace Steam.Migrations
             //DOTA 2
 
 
-           /* string Dota2Description = "The most-played game on Steam. Every day, millions of players worldwide" +
+            /*string Dota2Description = "The most-played game on Steam. Every day, millions of players worldwide" +
                 " enter battle as one of over a hundred Dota heroes. And no matter if it's their 10th hour of" +
                 " play or 1,000th, there's always something new to discover.With regular updates that ensure" +
                 " a constant evolution of gameplay, features, and heroes, Dota 2 has truly taken on a life of its own. " +
@@ -38,7 +38,7 @@ namespace Steam.Migrations
             string Dota2Developer = "VALVE Corporation";
             DateTime Dota2Date = DateTime.Now;
             float Dota2Price = 0f;
-            GameImage Dota2Image = new GameImage("https://www.elsetge.cat/myimg/f/41-418602_dota-2-logo-wallpaper-hd.jpg");
+            String Dota2Image = "https://www.elsetge.cat/myimg/f/41-418602_dota-2-logo-wallpaper-hd.jpg";
 
 
             //Magicka 2
@@ -54,7 +54,7 @@ namespace Steam.Migrations
             string Magicka2Developer = "Piece Interactive";
             DateTime Magicka2Date = DateTime.Now;
             float Magicka2Price = 14.99f;
-            GameImage Magicka2Image = new GameImage("https://vistapointe.net/images/magicka-2-wallpaper-7.jpg");
+            String Magicka2Image = "https://vistapointe.net/images/magicka-2-wallpaper-7.jpg";
 
             //Supraland
 
@@ -66,7 +66,7 @@ namespace Steam.Migrations
             string SupralandDeveloper = "Supra Games";
             DateTime SupralandDate = DateTime.Now;
             float SupralandPrice = 19.99f;
-            GameImage SupralandImage = new GameImage("https://cdkeyprices.com/images/games/675835/cover.jpg");
+            String SupralandImage = "https://cdkeyprices.com/images/games/675835/cover.jpg";
 
 
             // Witcher 3 
@@ -79,7 +79,7 @@ namespace Steam.Migrations
             string Witcher3Developer = "CD PROJEKT RED";
             DateTime Witcher3Date = DateTime.Now;
             float Witcher3Price = 29.99f;
-            GameImage Witcher3Image = new GameImage("https://images5.alphacoders.com/916/916526.jpg");
+            String Witcher3Image = "https://images5.alphacoders.com/916/916526.jpg";
 
 
 
@@ -98,7 +98,7 @@ namespace Steam.Migrations
             string BorderOfficerDeveloper = "Cocopo";
             DateTime BorderOfficerDate = DateTime.Now;
             float BorderOfficerPrice = 8.19f;
-            GameImage BorderOfficerImage = new GameImage("https://www.wasdzone.com/wp-content/uploads/2019/12/Border-Officer_sistem_gereksinimleri-768x432.jpg");
+            String BorderOfficerImage = "https://www.wasdzone.com/wp-content/uploads/2019/12/Border-Officer_sistem_gereksinimleri-768x432.jpg";
 
             // DIRT 4
 
@@ -114,7 +114,7 @@ namespace Steam.Migrations
             string Dirt4Developer = "Codemasters";
             DateTime Dirt4Date = DateTime.Now;
             float Dirt4Price = 54.99f;
-            GameImage Dirt4Image = new GameImage("https://www.seven-gamers.com/wp-content/uploads/dirt-4-logo2.jpg");
+            String Dirt4Image = "https://www.seven-gamers.com/wp-content/uploads/dirt-4-logo2.jpg";
 
             // HENTAI
 
@@ -123,7 +123,7 @@ namespace Steam.Migrations
             string HentaiDeveloper = "Mature Games";
             DateTime HentaiDate = DateTime.Now;
             float HentaiPrice = 1.59f;
-            GameImage HentaiImage = new GameImage("https://steamcdn-a.akamaihd.net/steam/apps/1113680/ss_26a759c7e3dc1b5c2928a0e6a531026166871b3f.1920x1080.jpg?t=1566268407");
+            String HentaiImage = "https://steamcdn-a.akamaihd.net/steam/apps/1113680/ss_26a759c7e3dc1b5c2928a0e6a531026166871b3f.1920x1080.jpg?t=1566268407";
 
             // TombRaider
 
@@ -135,7 +135,7 @@ namespace Steam.Migrations
             string TombRaiderDeveloper = "Eidos-Montreal";
             DateTime TombRaiderDate = DateTime.Now;
             float TombRaiderPrice = 59.99f;
-            GameImage TombRaiderImage = new GameImage("https://cdn.wallpapersafari.com/94/95/QhfcMJ.jpg");
+            String TombRaiderImage = "https://cdn.wallpapersafari.com/94/95/QhfcMJ.jpg";
 
             //Slender
 
@@ -146,7 +146,7 @@ namespace Steam.Migrations
             string SlenderDeveloper = "Blue Isle Studios";
             DateTime SlenderDate = DateTime.Now;
             float SlenderPrice = 9.99f;
-            GameImage SlenderImage = new GameImage("https://image.tmdb.org/t/p/w1280/m28bl4gFE46W2RyTm3Gc7uP5ctq.jpg");
+            String SlenderImage = "https://image.tmdb.org/t/p/w1280/m28bl4gFE46W2RyTm3Gc7uP5ctq.jpg";
 
             //Games
 

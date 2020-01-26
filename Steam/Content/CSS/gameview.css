@@ -1,0 +1,42 @@
+﻿.left-part {
+    display: inline-block;
+    float: left;
+    width: 50%;
+}
+
+.right-part {
+    display: inline-block;
+    width: 30%;
+    margin-left: 5%;
+}
+
+.cover-image img {
+    width: 342px;
+    height: 159px;
+}
+
+.description{
+    width: 342px;
+    height: 300px;
+}
+
+.cover-image, .description, .other-info {
+    display: block;
+}
+
+.image-list img {
+    width: 145px;
+    height: 83px;
+    display: inline-block;
+}
+
+.image-list {
+    margin-top: 5px;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    max-height: 100px;
+}
+.other-info{
+  
+}

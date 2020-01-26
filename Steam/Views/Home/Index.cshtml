@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!--<div class="jumbotron">
@@ -32,7 +33,7 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
-
+    -->
 <style>
     .ui-widget-content{
         background:none;
@@ -79,17 +80,18 @@
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
             <div class="carousel-inner">
-                @**{
+                
+                @{
                     var first = true;
                 }
 
                 @foreach (var item in Model)
                 {
                     <div class="item @(first?Html.Raw("active"):Html.Raw(""))">
-                        <img src="@item.images[1]" />
+                        <img src="@item.coverImage" />
                     </div>
                     first = false;
-                }*@
+                }
             </div>
 
 
@@ -107,7 +109,7 @@
 
 
 
-    <div id="game-tabs">
+    <!--<div id="game-tabs">
         <ul>
             <li>
                 @Ajax.ActionLink("New and Trending","Tabs","Home", new { typeOfTab = "New" }, new AjaxOptions(){ HttpMethod = "GET",
@@ -140,22 +142,23 @@
     </div>*@
 
     </div>
+        -->
 
 
-<script>
+    <script>
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-        $("#game-tabs").tabs({
-            activate: 1
+            //$("#game-tabs").tabs({
+            //  activate: 1
+            //});
+
+            $('.carousel').carousel({
+                interval: 2000
+            });
         });
 
-        $('.carousel').carousel({
-            interval: 2000
-        });
-    });
-
-</script>
+    </script>
 
 </div>
-    -->
+    
