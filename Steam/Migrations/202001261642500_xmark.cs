@@ -3,7 +3,7 @@ namespace Steam.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class xmark : DbMigration
     {
         public override void Up()
         {
@@ -89,12 +89,12 @@ namespace Steam.Migrations
                 c => new
                     {
                         GameImageId = c.Int(nullable: false, identity: true),
+                        GameId = c.Int(),
                         UrlString = c.String(),
-                        Game_GameId = c.Int(),
                     })
                 .PrimaryKey(t => t.GameImageId)
-                .ForeignKey("dbo.Games", t => t.Game_GameId)
-                .Index(t => t.Game_GameId);
+                .ForeignKey("dbo.Games", t => t.GameId)
+                .Index(t => t.GameId);
             
             CreateTable(
                 "dbo.Genres",
@@ -194,7 +194,7 @@ namespace Steam.Migrations
             DropForeignKey("dbo.Reviews", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.GenreGames", "Game_GameId", "dbo.Games");
             DropForeignKey("dbo.GenreGames", "Genre_GenreId", "dbo.Genres");
-            DropForeignKey("dbo.GameImages", "Game_GameId", "dbo.Games");
+            DropForeignKey("dbo.GameImages", "GameId", "dbo.Games");
             DropForeignKey("dbo.UserWishlistedGames", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.UserWishlistedGames", "GameId", "dbo.Games");
             DropForeignKey("dbo.UserOwnedGames", "UserId", "dbo.AspNetUsers");
@@ -213,7 +213,7 @@ namespace Steam.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.Reviews", new[] { "Game_GameId" });
             DropIndex("dbo.Reviews", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.GameImages", new[] { "Game_GameId" });
+            DropIndex("dbo.GameImages", new[] { "GameId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");

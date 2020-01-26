@@ -13,18 +13,24 @@ namespace Steam.Models
        
         public int GameImageId { get; set; }
 
-       
-
+        public Nullable<int> GameId { get; set; }
         public virtual Game Game { get; set; }
 
         public String UrlString { get; set; }
 
        
-        public GameImage(string Url)
+        public GameImage(int gameId, string Url)
         {
-            
+            this.GameId = gameId; 
             this.UrlString = Url;
         }
+
+        public GameImage() {
+            
+        
+        }
+
+
 
 
     }

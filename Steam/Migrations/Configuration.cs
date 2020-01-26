@@ -18,8 +18,8 @@ namespace Steam.Migrations
         {
             //DOTA 2
 
-
-            /*string Dota2Description = "The most-played game on Steam. Every day, millions of players worldwide" +
+/*
+           string Dota2Description = "The most-played game on Steam. Every day, millions of players worldwide" +
                 " enter battle as one of over a hundred Dota heroes. And no matter if it's their 10th hour of" +
                 " play or 1,000th, there's always something new to discover.With regular updates that ensure" +
                 " a constant evolution of gameplay, features, and heroes, Dota 2 has truly taken on a life of its own. " +
@@ -173,7 +173,98 @@ namespace Steam.Migrations
             //new GameImage()};
 
 
-            context.SaveChanges();*/
+           
+
+            */
+
+            
+            List<GameImage> Dota2Images = new List<GameImage>();
+            List<GameImage> BorderOfficerImages = new List<GameImage>();
+            List<GameImage> Dirt4Images = new List<GameImage>();
+            List<GameImage> HentaiImages = new List<GameImage>();
+            List<GameImage> Magicka2Images = new List<GameImage>();
+            List<GameImage> SlenderImages = new List<GameImage>();
+            List<GameImage> SupralandImages = new List<GameImage>();
+            List<GameImage> TombRaiderImages = new List<GameImage>();
+            List<GameImage> Witcher3Images = new List<GameImage>();
+           
+
+            //ADD IMAGES !!!
+
+            Dota2Images.Add(new GameImage(1, "https://steamcdn-a.akamaihd.net/steam/apps/570/ss_86d675fdc73ba10462abb8f5ece7791c5047072c.1920x1080.jpg?t=1561594389"));
+            Dota2Images.Add(new GameImage(1, "https://steamcdn-a.akamaihd.net/steam/apps/570/ss_ad8eee787704745ccdecdfde3a5cd2733704898d.1920x1080.jpg?t=1561594389"));
+            Dota2Images.Add(new GameImage(1, "https://steamcdn-a.akamaihd.net/steam/apps/570/ss_7ab506679d42bfc0c0e40639887176494e0466d9.1920x1080.jpg?t=1561594389"));
+            Dota2Images.Add(new GameImage(1, "https://steamcdn-a.akamaihd.net/steam/apps/570/ss_c9118375a2400278590f29a3537769c986ef6e39.1920x1080.jpg?t=1561594389"));
+            Dota2Images.Add(new GameImage(1, "https://steamcdn-a.akamaihd.net/steam/apps/570/ss_f9ebafedaf2d5cfb80ef1f74baa18eb08cad6494.1920x1080.jpg?t=1561594389"));
+
+            Dota2Images.ForEach(i => context.GameImages.AddOrUpdate(i));
+
+            Magicka2Images.Add(new GameImage(5, "https://steamcdn-a.akamaihd.net/steam/apps/238370/ss_41b744c738cc2d394378ccd1b1bf5e1db0163b64.1920x1080.jpg?t=1561043582"));
+            Magicka2Images.Add(new GameImage(5, "https://steamcdn-a.akamaihd.net/steam/apps/238370/ss_ab78099a447154ad202a1043a2a051c35df7a586.1920x1080.jpg?t=1561043582"));
+            Magicka2Images.Add(new GameImage(5, "https://steamcdn-a.akamaihd.net/steam/apps/238370/ss_b270b4da37c5fd3daa6c0d9d2b75064f32679556.1920x1080.jpg?t=1561043582"));
+            Magicka2Images.Add(new GameImage(5, "https://steamcdn-a.akamaihd.net/steam/apps/238370/ss_acc283cf39ad175376cc75fd718a8738e3d91372.1920x1080.jpg?t=1561043582"));
+            Magicka2Images.Add(new GameImage(5, "https://steamcdn-a.akamaihd.net/steam/apps/238370/ss_1af2c0b9659e116ed200c994900074e496ef1d07.1920x1080.jpg?t=1561043582"));
+
+            Magicka2Images.ForEach(i => context.GameImages.AddOrUpdate(i));
+
+            SupralandImages.Add(new GameImage(7, "https://steamcdn-a.akamaihd.net/steam/apps/813630/ss_2196cce530d054f647b35d4603cf89cc1f562f6a.1920x1080.jpg?t=1562607587"));
+            SupralandImages.Add(new GameImage(7, "https://steamcdn-a.akamaihd.net/steam/apps/813630/ss_2595c90ee1a524d1f4a21f4012bfcae4af544945.1920x1080.jpg?t=1562607587"));
+            SupralandImages.Add(new GameImage(7, "https://steamcdn-a.akamaihd.net/steam/apps/813630/ss_8a01de634e5470eb32db61772870a91693f576e2.1920x1080.jpg?t=1562607587"));
+            SupralandImages.Add(new GameImage(7, "https://steamcdn-a.akamaihd.net/steam/apps/813630/ss_f2973b56bcd8786c8643163179f3fd155836448a.1920x1080.jpg?t=1562607587"));
+            SupralandImages.Add(new GameImage(7, "https://steamcdn-a.akamaihd.net/steam/apps/813630/ss_ed174e05edfcdf307b349760969e0c00173cb02b.1920x1080.jpg?t=1562607587"));
+
+            SupralandImages.ForEach(i => context.GameImages.AddOrUpdate(i));
+
+            Witcher3Images.Add(new GameImage(9, "https://steamcdn-a.akamaihd.net/steam/apps/292030/ss_107600c1337accc09104f7a8aa7f275f23cad096.1920x1080.jpg?t=1550078557"));
+            Witcher3Images.Add(new GameImage(9, "https://steamcdn-a.akamaihd.net/steam/apps/292030/ss_64eb760f9a2b67f6731a71cce3a8fb684b9af267.1920x1080.jpg?t=1550078557"));
+            Witcher3Images.Add(new GameImage(9, "https://steamcdn-a.akamaihd.net/steam/apps/292030/ss_eda99e7f705a113d04ab2a7a36068f3e7b343d17.1920x1080.jpg?t=1550078557"));
+            Witcher3Images.Add(new GameImage(9, "https://steamcdn-a.akamaihd.net/steam/apps/292030/ss_d5b80eb63c12a6484f26796f3e34410651bba068.1920x1080.jpg?t=1550078557"));
+            Witcher3Images.Add(new GameImage(9, "https://steamcdn-a.akamaihd.net/steam/apps/292030/ss_b74d60ee215337d765e4d20c8ca6710ae2362cc2.1920x1080.jpg?t=1550078557"));
+
+            Witcher3Images.ForEach(i => context.GameImages.AddOrUpdate(i));
+
+            BorderOfficerImages.Add(new GameImage(2, "https://steamcdn-a.akamaihd.net/steam/apps/1057180/ss_5294f17cc17afa2b009271c2178cd26301c2db4c.1920x1080.jpg?t=1565336368"));
+            BorderOfficerImages.Add(new GameImage(2, "https://steamcdn-a.akamaihd.net/steam/apps/1057180/ss_7ac9ee9e4b965648fd6296fae2da699d2893eb53.1920x1080.jpg?t=1565336368"));
+            BorderOfficerImages.Add(new GameImage(2, "https://steamcdn-a.akamaihd.net/steam/apps/1057180/ss_6bd08b4f58c14079f12e92efc42bf61cbe2b62d0.1920x1080.jpg?t=1565336368"));
+            BorderOfficerImages.Add(new GameImage(2, "https://steamcdn-a.akamaihd.net/steam/apps/1057180/ss_b6ad4ace86d8c7dfa676728d0394cb3639c77349.1920x1080.jpg?t=1565336368"));
+            BorderOfficerImages.Add(new GameImage(2, "https://steamcdn-a.akamaihd.net/steam/apps/1057180/ss_c570539f1ffcfa1ff8869da34e4001b4c46db2aa.1920x1080.jpg?t=1565336368"));
+
+            BorderOfficerImages.ForEach(i => context.GameImages.AddOrUpdate(i));
+
+            Dirt4Images.Add(new GameImage(3, "https://steamcdn-a.akamaihd.net/steam/apps/421020/ss_101e771250373db1e6a4a17955b8bc671d1c4617.1920x1080.jpg?t=1553771363"));
+            Dirt4Images.Add(new GameImage(3, "https://steamcdn-a.akamaihd.net/steam/apps/421020/ss_76b9373f3f4813d771ae84fc9de74ea7be8ef7db.1920x1080.jpg?t=1553771363"));
+            Dirt4Images.Add(new GameImage(3, "https://steamcdn-a.akamaihd.net/steam/apps/421020/ss_0f3f41c4739e829b8093790fa5b767647ddf7045.1920x1080.jpg?t=1553771363"));
+            Dirt4Images.Add(new GameImage(3, "https://steamcdn-a.akamaihd.net/steam/apps/421020/ss_cfeb262662bc7e6f852db299902637c59642273b.1920x1080.jpg?t=1553771363"));
+            Dirt4Images.Add(new GameImage(3, "https://steamcdn-a.akamaihd.net/steam/apps/421020/ss_68353d6b1f74c5478e5b37dbdd47cd5bd94df082.1920x1080.jpg?t=1553771363"));
+
+            Dirt4Images.ForEach(i => context.GameImages.AddOrUpdate(i));
+
+            HentaiImages.Add(new GameImage(4, "https://steamcdn-a.akamaihd.net/steam/apps/1113680/ss_26a759c7e3dc1b5c2928a0e6a531026166871b3f.1920x1080.jpg?t=1566268407"));
+            HentaiImages.Add(new GameImage(4, "https://steamcdn-a.akamaihd.net/steam/apps/1113680/ss_131e4abcfccfcb51dfa4fbd29b42eca57ccb0b6f.1920x1080.jpg?t=1566268407"));
+            HentaiImages.Add(new GameImage(4, "https://steamcdn-a.akamaihd.net/steam/apps/1113680/ss_0bddd6726e70b9337fe6a40f6bab2a9d649ef59c.1920x1080.jpg?t=1566268407"));
+            HentaiImages.Add(new GameImage(4, "https://steamcdn-a.akamaihd.net/steam/apps/1113680/ss_7cab3bbf06113ec82c68ab356284cc558ea11e02.1920x1080.jpg?t=1566268407"));
+            HentaiImages.Add(new GameImage(4, "https://steamcdn-a.akamaihd.net/steam/apps/1113680/ss_2cfa6ed8f7beb70191df6a8d43236b4feea5c190.1920x1080.jpg?t=1566268407"));
+
+            HentaiImages.ForEach(i => context.GameImages.AddOrUpdate(i));
+
+            TombRaiderImages.Add(new GameImage(8, "https://steamcdn-a.akamaihd.net/steam/apps/750920/ss_3f370f69eef0caeceb533d06925cc48f0f26c83c.1920x1080.jpg?t=1561711273"));
+            TombRaiderImages.Add(new GameImage(8, "https://steamcdn-a.akamaihd.net/steam/apps/750920/ss_3fcd62a2831bcc1e557a0fe2a061b6369ba030d1.1920x1080.jpg?t=1561711273"));
+            TombRaiderImages.Add(new GameImage(8, "https://steamcdn-a.akamaihd.net/steam/apps/750920/ss_794a3ecd4ae51313f8cfffbc6b3d8b91c665b12b.1920x1080.jpg?t=1561711273"));
+            TombRaiderImages.Add(new GameImage(8, "https://steamcdn-a.akamaihd.net/steam/apps/750920/ss_8907e0a624a1113be01fa1b426d0e3ab0971e7d2.1920x1080.jpg?t=1561711273"));
+            TombRaiderImages.Add(new GameImage(8, "https://steamcdn-a.akamaihd.net/steam/apps/750920/ss_191adc1f11bf9d13498cb411ac71f29221732e86.1920x1080.jpg?t=1561711273"));
+
+            TombRaiderImages.ForEach(i => context.GameImages.AddOrUpdate(i));
+
+            SlenderImages.Add(new GameImage(6, "https://steamcdn-a.akamaihd.net/steam/apps/252330/ss_8791183f0de3ef85cf1c363e687fd59cfb08d95d.1920x1080.jpg?t=1548194589"));
+            SlenderImages.Add(new GameImage(6, "https://steamcdn-a.akamaihd.net/steam/apps/252330/ss_9d559cf0437931888e1ea13868355ab648004ebc.1920x1080.jpg?t=1548194589"));
+            SlenderImages.Add(new GameImage(6, "https://steamcdn-a.akamaihd.net/steam/apps/252330/ss_78653ec456cd850260b75a3882a4807ba1f43bb8.1920x1080.jpg?t=1548194589"));
+            SlenderImages.Add(new GameImage(6, "https://steamcdn-a.akamaihd.net/steam/apps/252330/ss_b1c6109d69e638d80739f156614e9db2cd4be70f.1920x1080.jpg?t=1548194589"));
+            SlenderImages.Add(new GameImage(6, "https://steamcdn-a.akamaihd.net/steam/apps/252330/ss_74c39a1d7b8523fa7fe5c1dbac97a81b89aa71b5.1920x1080.jpg?t=1548194589"));
+
+            SlenderImages.ForEach(i => context.GameImages.AddOrUpdate(i));
+
+          
+            context.SaveChanges();
 
         }
     }

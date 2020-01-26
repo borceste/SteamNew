@@ -28,7 +28,14 @@ namespace Steam.Controllers
         // GET: Games/Details/5
         public ActionResult Details(int? id)
         {
+            List<Game> listGames = db.Games.ToList();
 
+            List<Review> listReviews = db.Reviews.Where(x => x.Game.GameId == id).ToList();
+
+            List<GameImage> gameImages = db.GameImages.Where(x => x.Game.GameId == id).ToList();
+
+            ViewBag["listReviews"] = listReviews;
+            ViewBag["gameImages"] = gameImages;
 
 
             if (id == null)
