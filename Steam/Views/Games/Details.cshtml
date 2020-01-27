@@ -13,7 +13,7 @@
     var gameData = ViewBag.Game;
     IEnumerable<GameImage> images = ViewData["gameImages"] as IEnumerable<GameImage>;
     IEnumerable<Review> reviews = ViewData["listReviews"] as IEnumerable<Review>;
-    
+    IEnumerable<ApplicationUser> users = ViewData["users"] as IEnumerable<ApplicationUser>;
 }
 @section MyScripts{
     <script type="text/javascript">
@@ -28,6 +28,41 @@
         })
     </script>
 }
+
+<style>
+
+    .right-part div{
+        display:block;
+        float:left;
+        clear:left;
+    }
+    .user-info div{
+        display:inline-block;
+    }
+    .review{
+        display:block;
+        
+    }
+    .user-name{
+        position:relative;
+        top:-35px;
+    }
+    .review-part{
+        margin-top:10px;
+        border-radius:25px;
+        border: 1px solid #ffd1fe;
+        padding:10px;
+
+    }
+    p{
+        color:#fff;
+    }
+    
+
+
+
+
+</style>
 
 <div class="container">
     <div class="upper-part">
@@ -65,7 +100,7 @@
             </div>
         </div>
         <div class="right-part">
-            <div class="cover-image">
+            <div class="cover-image" width="100%">
                 <img src="@Model.coverImage">
             </div>
             <div class="description">
@@ -79,10 +114,59 @@
             </div>
         </div>
     </div>
+    <hr />
     <div class="lower-part">
-        <div class="review-part">
-
+        <p>ABOUT THIS GAME</p>
+        <div class="regular-description">
+            <p>
+                @Model.description
+            </p>
+            
         </div>
+       <hr />
+        <p>REVIEWS</p>
+        <div class="review-container">
+            @foreach(Review review in reviews)
+            {
+             <div class="review-part">
+                <div class="user-info">
+                    @foreach (ApplicationUser user in users)
+                    {
+                        if (review.ApplicationUserId == user.Id)
+                        {
+                            <a href="@Url.Action("Details","ApplicationUsers", new { id = review.ApplicationUserId},null)">
+
+                                <div class="user-picture">
+                                    <img src="@user.avatar" width="50px" height="50px" />
+                                </div>
+                            </a>
+
+                            <a href="@Url.Action("Details","ApplicationUsers", new { id = review.ApplicationUserId},null)">
+                                <div class="user-name">
+                                    <p>
+                                        @user.nickname
+                                    </p>
+                                </div>
+                            </a>
+                            
+                        }
+
+                    }
+
+                </div>
+                <div class="review">
+                    <p>
+                        @review.review
+                    </p>
+                </div>
+
+
+            </div>
+                
+
+            }
+        </div>
+        
     </div>
 
 </div>

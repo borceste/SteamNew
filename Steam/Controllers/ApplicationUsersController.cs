@@ -10,126 +10,115 @@ using Steam.Models;
 
 namespace Steam.Controllers
 {
-    public class GamesController : Controller
+    public class ApplicationUsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Games
+        // GET: ApplicationUsers
         public ActionResult Index()
         {
-
-
-
-
-
-            return View(db.Games.ToList());
+            return View(db.Users.ToList());
         }
 
-        // GET: Games/Details/5
-        public ActionResult Details(int? id)
+        // GET: ApplicationUsers/Details/5
+        public ActionResult Details(string id)
         {
-            //List<Game> listGames = db.Games.ToList();
 
-            List<Review> listReviews = db.Reviews.Where(x => x.GameId == id).ToList();
-           
-            List<GameImage> gameImages = db.GameImages.Where(x => x.GameId == id).ToList();
-
+            List<Comment> comments = db.Comments.Where(x => x.ApplicationUserId == id).ToList();
             List<ApplicationUser> users = db.Users.ToList();
 
-            ViewData["listReviews"] = listReviews;
-            ViewData["gameImages"] = gameImages;
+            ViewData["comments"] = comments;
             ViewData["users"] = users;
-
 
 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
-            if (game == null)
+            ApplicationUser applicationUser = db.Users.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(game);
+            return View(applicationUser);
         }
 
-        // GET: Games/Create
+        // GET: ApplicationUsers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Games/Create
+        // POST: ApplicationUsers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GameId,name,price,coverImage,description,developer,rating,sold,discount,dateAdded")] Game game)
+        public ActionResult Create([Bind(Include = "Id,nickname,avatar,info,level,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
-                db.Games.Add(game);
+                db.Users.Add(applicationUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(game);
+            return View(applicationUser);
         }
 
-        // GET: Games/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: ApplicationUsers/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
-            if (game == null)
+            ApplicationUser applicationUser = db.Users.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(game);
+            return View(applicationUser);
         }
 
-        // POST: Games/Edit/5
+        // POST: ApplicationUsers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GameId,name,price,coverImage,description,developer,rating,sold,discount,dateAdded")] Game game)
+        public ActionResult Edit([Bind(Include = "Id,nickname,avatar,info,level,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(game).State = EntityState.Modified;
+                db.Entry(applicationUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(game);
+            return View(applicationUser);
         }
 
-        // GET: Games/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: ApplicationUsers/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
-            if (game == null)
+            ApplicationUser applicationUser = db.Users.Find(id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(game);
+            return View(applicationUser);
         }
 
-        // POST: Games/Delete/5
+        // POST: ApplicationUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Game game = db.Games.Find(id);
-            db.Games.Remove(game);
+            ApplicationUser applicationUser = db.Users.Find(id);
+            db.Users.Remove(applicationUser);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

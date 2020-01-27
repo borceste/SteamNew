@@ -1,0 +1,148 @@
+﻿@using Steam.Models;
+@model Steam.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{ 
+    IEnumerable<ApplicationUser> users = ViewData["users"] as IEnumerable<ApplicationUser>;
+    IEnumerable<Comment> comments = ViewData["comments"] as IEnumerable<Comment>;
+
+}
+
+@*
+@section MyScripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".user-picture").click(function () {
+                var klik = $(this);
+               @Url.Action("Details","ApplicationUserController", new { id = klik.attr("")})
+
+            })
+
+        })
+    </script>
+}*@
+<style>
+    .user-overall div{
+        display:inline-block;
+
+    }
+    .user-level{
+        position:relative;
+        float:right;
+    }
+    .user-name{
+        position:relative;
+        top:-175px;
+    }
+
+
+    .user-info div{
+        display:inline-block;
+    }
+    .comment{
+        display:block;
+        
+    }
+
+    .user-avatar{
+        position:relative;
+        top:-35px;
+    }
+
+
+    .comment-part{
+        margin-top:10px;
+        border-radius:25px;
+        border: 1px solid #ffd1fe;
+        padding:10px;
+
+    }
+    p{
+        color:#fff;
+    }
+    .sub-container{
+        
+        padding:15px;
+    }
+
+
+</style>
+<div class="container">
+    <div class="sub-container">
+        <div class="user-overall">
+            <div class="user-image">
+                <img src="@Model.avatar" width="200px" height="200px" />
+            </div>
+            <div class="user-name">
+                <p style="font-size:150%;">
+                    @Model.nickname
+                </p>
+            </div>
+            <div class="user-level">
+                <p style="font-size:150%;">
+                    Level: @Model.level
+                </p>
+            </div>
+        </div>
+
+        <hr />
+        <p>PERSONAL INFO</p>
+        <div class="personal-info">
+            <p>
+                @Model.info
+            </p>
+        </div>
+
+        <hr />
+        <p>COMMENTS</p>
+        <div class="user-comments">
+            @foreach (Comment comment in comments)
+            {
+                <div class="comment-part">
+                    <div class="user-info">
+                        @foreach (ApplicationUser user in users)
+                        {
+                            if (comment.ApplicationUserId2 == user.Id)
+                            {
+                                <a href="@Url.Action("Details","ApplicationUsers", new { id = comment.ApplicationUserId2}, null)">
+                                    <div class="user-picture">
+                                        <img src="@user.avatar" width="50px" height="50px   " />
+                                    </div>
+                                </a>
+                                <a href="@Url.Action("Details","ApplicationUsers", new { id = comment.ApplicationUserId2}, null)">
+                                    <div class="user-avatar">
+                                        <p>
+                                            @user.nickname
+                                        </p>
+                                    </div>
+                                </a>
+                                
+                            }
+
+                        }
+
+                    </div>
+                    <div class="comment">
+                        <p>
+                            @comment.comment
+                        </p>
+                    </div>
+
+
+                </div>
+            }
+
+        </div>
+    </div>
+    
+
+</div>
+
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+*@

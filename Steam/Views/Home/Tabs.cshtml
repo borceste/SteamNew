@@ -1,88 +1,95 @@
-﻿@model IEnumerable<Steam.Models.Game>
+﻿
+@model IEnumerable<Steam.Models.Game>
 
 <!--<p>
    @* @Html.ActionLink("Create New", "Create")*@
 </p>-->
-<style>
-        .game {
-            background-color: blueviolet;
-            width: 50%;
-            height: 15%;
-            display: block;
-            margin: 5px auto;
-        }
+<head>
+    @section tabsStyle{
+        <style>
+            .game {
+                background-color:blueviolet;
+                width: 40%;
+                height: 15%;
+                display: block;
+                margin: 5px auto;
+            }
 
-        .cover-image {
-            max-height: 100%;
-            height:100%;
-            max-width: 40%;
-            object-fit: contain;
-            float: left;
-        }
+            .cover-image {
+                max-height: 100%;
+                height: 100%;
+                max-width: 40%;
+                object-fit: contain;
+                float: left;
+            }
 
-    .name {
-            display: inline;
-            float: left;
-            padding: 2% 5% 5% 1%;
-            
+            .name {
+                display: inline;
+                float: left;
+                padding: 2% 5% 5% 1%;
+            }
+
+            .price {
+                display: inline-block;
+                float: right;
+            }
+
+            .linedText {
+                text-decoration: line-through;
+                opacity: 0.7;
+            }
+
+            .discount {
+                float: right;
+                background-color: lightgreen;
+            }
+
+            * {
+                font-family: 'Source Sans Pro', sans-serif;
+            }
+        </style>
+
     }
+</head>
 
-        .price {
-            display: inline-block;
-            float: right;
-        }
-
-        .linedText {
-            text-decoration: line-through;
-            opacity: 0.7;
-        }
-
-        .discount {
-            float: right;
-            background-color:lightgreen;
-        }
-    * {
-        font-family: 'Source Sans Pro', sans-serif;
-    }
-    </style>
 
 @if (Model != null)
 {
     foreach (var game in Model)
     {
-        @*<a href="@Url.Action()">*@
-        <div class="game">
-            <img src="@game.coverImage" class="cover-image" />
-            <h3 class="name">@game.name</h3>
-            @*<p>Ganre:@game.genre.name</p>*@
+        <a href="@Url.Action("Details","Games",new { id = game.GameId },null)">
+            <div class="game">
+                <img src="@game.coverImage" class="cover-image" />
+                <h3 class="name">@game.name</h3>
+                @*<p>Ganre:@game.genre.name</p>*@
 
-            @if (game.discount != 0)
-            {
-
-                <p class="discount">-@game.discount %</p>
-                if (game.DiscountedPrice == 0)
+                @if (game.discount != 0)
                 {
-                    <p class="price">
-                        <span class="linedText">@game.price</span>
-                        <br />
-                        "Free"
-                    </p>
+
+                    <p class="discount">-@game.discount %</p>
+                    if (game.DiscountedPrice == 0)
+                    {
+                        <p class="price">
+                            <span class="linedText">@game.price</span>
+                            <br />
+                            "Free"
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="price">
+                            <span class="linedText">@game.price</span>
+                            <br />
+                            @game.DiscountedPrice"€"
+                        </p>
+                    }
                 }
                 else
                 {
-                    <p class="price">
-                        <span class="linedText">@game.price</span>
-                        <br />
-                        @game.DiscountedPrice"€"
-                    </p>
+                    <p class="price">@(game.price.ToString().Equals("0") ? "Free" : String.Concat(game.price.ToString(), "€")) </p>
                 }
-            }
-            else
-            {
-                <p class="price">@(game.price.ToString().Equals("0") ? "Free" : String.Concat(game.price.ToString(), "€")) </p>
-            }
-        </div>
-        @* </a> *@
+            </div>
+        </a>
     }
 }
 

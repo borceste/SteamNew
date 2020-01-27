@@ -4,6 +4,10 @@
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    @Styles.Render("~/Content/CSS/TabsPartial.css","~/Content/CSS/Tabs.css")
+</head>
+
 
 <!--<div class="jumbotron">
     <h1>ASP.NET</h1>
@@ -35,44 +39,7 @@
 </div>
     -->
 <style>
-    .ui-widget-content{
-        background:none;
-    }
-    .ui-widget-header {
-        background: linear-gradient(to left,#3c315f,transparent);
-        border: none;
-    }
-    #game-tabs{
-        border:none;
-    }
-
-    .ui-tabs .ui-tabs-panel{
-        padding:5% 5%;
-    }
-
-    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
-        border:none;
-        background-color:transparent;
-        background:none;
-    }
-        .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, a.ui-button, a:link.ui-button, a:visited.ui-button, .ui-button {
-            color: #462a8b;
-        }
-        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
-            background: #111735;
-            //color:white;
-        }
-    .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{
-        color:#eddddd;
-    }
-
-    .container>div{
-        margin:5% auto;
-    }
-
-    .ui-state-hover a:hover{
-        color:white;
-    }
+    
 </style>
 
 <div class="container">
@@ -87,9 +54,15 @@
 
                 @foreach (var item in Model)
                 {
+              
                     <div class="item @(first?Html.Raw("active"):Html.Raw(""))">
-                        <img src="@item.coverImage" />
+                        <a href="@Url.Action("Details","Games", new { id = item.GameId})">
+                            <img src="@item.coverImage" />
+                        </a>
+                        
                     </div>
+                
+                    
                     first = false;
                 }
             </div>
@@ -109,49 +82,65 @@
 
 
 
-    <!--<div id="game-tabs">
+    <div id="game-tabs">
         <ul>
             <li>
-                @Ajax.ActionLink("New and Trending","Tabs","Home", new { typeOfTab = "New" }, new AjaxOptions(){ HttpMethod = "GET",
+                @Ajax.ActionLink("New and Trending", "Tabs", "Home", new { typeOfTab = "New" }, new AjaxOptions()
+                {
+                    HttpMethod = "GET",
                                                                                                              UpdateTargetId = "game-tabs1",
-                                                                                                             InsertionMode = InsertionMode.Replace})
-        </li>
-        <li>
-            @Ajax.ActionLink("Top selling", "Tabs", "Home", new { typeOfTab = "Top Selling" }, new AjaxOptions() { HttpMethod = "GET",
-                                                                            UpdateTargetId = "game-tabs2",
-                                                                            InsertionMode = InsertionMode.Replace})
-    </li>
-    <li>
-        @Ajax.ActionLink("Specials", "Tabs", "Home", new { typeOfTab = "Specials" }, new AjaxOptions() {
-                                                                                   HttpMethod = "GET",
-                                                                                   UpdateTargetId = "game-tabs3",
-                                                                                   InsertionMode = InsertionMode.Replace})</a>
-    </li>
-    </ul>
-    <div id="game-tabs1">
-        @Html.Partial("Tabs");
+                                                                                                             InsertionMode = InsertionMode.Replace
+                })
+            </li>
+            <li>
+                @Ajax.ActionLink("Top selling", "Tabs", "Home", new { typeOfTab = "Top Selling" }, new AjaxOptions()
+                {
+                    HttpMethod = "GET",
+                                                                                UpdateTargetId = "game-tabs2",
+                                                                                InsertionMode = InsertionMode.Replace
+                })
+            </li>
+            <li>
+                @Ajax.ActionLink("Specials", "Tabs", "Home", new { typeOfTab = "Specials" }, new AjaxOptions()
+                {
+                                                                                           HttpMethod = "GET",
+                                                                                           UpdateTargetId = "game-tabs3",
+                                                                                           InsertionMode = InsertionMode.Replace
+                })</a>
+            </li>
+        </ul>
+
+
+
+        <div id="game-tabs1">
+
+
+
+            @*@Html.Partial("Tabs")*@
+
+        </div>
+        @*<div id="game-tabs2">
+            @Html.Partial("Tabs");
+
+        </div>
+        <div id="game-tabs3">
+            @Html.Partial("Tabs");
+
+        </div>*@
 
     </div>
-    @*<div id="game-tabs2">
-        @Html.Partial("Tabs");
 
-    </div>
-    <div id="game-tabs3">
-        @Html.Partial("Tabs");
-
-    </div>*@
-
-    </div>
-        -->
+   
+       
 
 
     <script>
 
         $(document).ready(function () {
 
-            //$("#game-tabs").tabs({
-            //  activate: 1
-            //});
+            $("#game-tabs").tabs({
+                activate: 1
+            });
 
             $('.carousel').carousel({
                 interval: 2000

@@ -11,29 +11,36 @@ namespace Steam.Models
         //private User user;
         [Key]
         public int CommentId { get; set; }
-        private String comment;
-        private DateTime date;
+    
 
+        
 
-        public Nullable<int> ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-       
+
+
+        public string ApplicationUserId2 { get; set; }
+
+        public String comment { get; set; }
+        public DateTime date { get; set; }
+
 
         public Comment()
         {
-            date = DateTime.Now;
-        }
-        public Comment(String comment)
-        {
             
+        }
+        public Comment(string id1, string id2, String comment)
+        {
+            this.ApplicationUserId = id1;
+            this.ApplicationUserId2 = id2;
             this.comment = comment;
             this.date = DateTime.Now;
         }
         /*public void setUser(User user)
         {
             //this.user = user;
-        }*/
+        }
         public void setComment(String comment)
         {
             this.comment = comment;
@@ -41,7 +48,7 @@ namespace Steam.Models
         /*public User getUser()
         {
             //return user;
-        }*/
+        }
         public String getComment()
         {
             return comment;
@@ -49,6 +56,6 @@ namespace Steam.Models
         public DateTime getDate()
         {
             return this.date;
-        }
+        }*/
     }
 }

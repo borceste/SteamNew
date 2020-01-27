@@ -1,0 +1,43 @@
+﻿.ui-widget-content {
+    background: none;
+}
+
+.ui-widget-header {
+    background: linear-gradient(to left,#3c315f,transparent);
+    border: none;
+}
+
+#game-tabs {
+    border: none;
+}
+
+.ui-tabs .ui-tabs-panel {
+    padding: 5% 5%;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: none;
+    background-color: transparent;
+    background: none;
+}
+
+    .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, a.ui-button, a:link.ui-button, a:visited.ui-button, .ui-button {
+        color: #462a8b;
+    }
+
+        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+            background: #111735;
+            //color:white;
+        }
+
+            .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+                color: #eddddd;
+            }
+
+.container > div {
+    margin: 5% auto;
+}
+
+.ui-state-hover a:hover {
+    color: white;
+}

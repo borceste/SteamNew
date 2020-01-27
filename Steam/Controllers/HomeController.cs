@@ -52,7 +52,7 @@ namespace Steam.Controllers
 
         public PartialViewResult Tabs(String typeOfTab)
         {
-            /*DataClass dataClass = new DataClass();
+            ApplicationDbContext dataClass = new ApplicationDbContext();
             List<Game> games = dataClass.Games.ToList();
             List<Game> result = null;
             switch (typeOfTab)
@@ -93,8 +93,8 @@ namespace Steam.Controllers
                                           select game).Take(10).ToList();
                     break;
             }
-            return PartialView(result);*/
-            return PartialView();
+            return PartialView(result);
+          
         }
 
         public ActionResult About()
