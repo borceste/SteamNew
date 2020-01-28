@@ -8,7 +8,9 @@
 @{ 
     IEnumerable<ApplicationUser> users = ViewData["users"] as IEnumerable<ApplicationUser>;
     IEnumerable<Comment> comments = ViewData["comments"] as IEnumerable<Comment>;
-
+    IEnumerable<Game> games = ViewData["games"] as IEnumerable<Game>;
+    IEnumerable<UserOwnedGame> ownedGames = ViewData["ownedGames"] as IEnumerable<UserOwnedGame>;
+    IEnumerable<UserWishlistedGame> wishGames = ViewData["wishGames"] as IEnumerable<UserWishlistedGame>;
 }
 
 @*
@@ -67,7 +69,18 @@
         
         padding:15px;
     }
-
+    .game-image{
+        width:250px;
+        height:200px;
+    }
+    .game-info div{
+        display:inline-block;
+    }
+    .game-name{
+        position:relative;
+        top:-180px;
+      
+    }
 
 </style>
 <div class="container">
@@ -89,7 +102,7 @@
         </div>
 
         <hr />
-        <p>PERSONAL INFO</p>
+        <p style="font-size:30px">PERSONAL INFO</p>
         <div class="personal-info">
             <p>
                 @Model.info
@@ -97,7 +110,60 @@
         </div>
 
         <hr />
-        <p>COMMENTS</p>
+
+        <p style="font-size:30px">OWNED GAMES</p>
+        <div class="games-list">
+            @foreach(UserOwnedGame userGame in ownedGames)
+            {
+                foreach(Game game in games)
+                {
+                    if(userGame.GameId == game.GameId)
+                    {
+                        <div class="game-info">
+                            <div class="game-image">
+                                <img src="@game.coverImage" width="250px" height="200px" />
+                            </div>
+                            <div class="game-name">
+                                <p style="font-size:20px">
+                                    @game.name
+                                </p>
+                            </div>
+                        </div>
+                       
+                    }
+                }
+            }
+        </div>
+        
+        <hr />
+
+        <p style="font-size:30px">WISHLISTED GAMES</p>
+
+        <div class="games-list">
+            @foreach (UserWishlistedGame userGame in wishGames)
+            {
+                foreach (Game game in games)
+                {
+                    if (userGame.GameId == game.GameId)
+                    {
+                        <div class="game-info">
+                            <div class="game-image">
+                                <img src="@game.coverImage" width="250px" height="200px" />
+                            </div>
+                            <div class="game-name">
+                                <p style="font-size:20px">
+                                    @game.name
+                                </p>
+                            </div>
+                        </div>
+
+                    }
+                }
+            }
+        </div>
+
+        <hr />
+        <p style="font-size:30px">COMMENTS</p>
         <div class="user-comments">
             @foreach (Comment comment in comments)
             {

@@ -13,7 +13,7 @@ namespace Steam.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202001271630175_initial"; }
+            get { return "202001280949390_initial"; }
         }
         
         string IMigrationMetadata.Source

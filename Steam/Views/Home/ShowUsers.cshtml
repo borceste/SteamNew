@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Steam.Models.ApplicationUser>
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .user div{
+        display:inline-block;
+    }
+    .user-name{
+        position:relative;
+        top:-35px
+    }
+    .user{
+        height:30%;
+    }
+    .user-image{
+        object-fit:contain;
+    }
+</style>
+<h1>COMMUNITY</h1>
+
+@foreach(var item in Model)
+{
+<div class="user">
+    <a href="@Url.Action("Details","ApplicationUsers", new { id = item.Id}, null)">
+        <div class="user-image">
+            <img src="@item.avatar" />
+        </div>
+    </a>
+    <a href="@Url.Action("Details","ApplicationUsers", new { id = item.Id}, null)">
+        <div class="user-name">
+            <p>@item.nickname</p>
+        </div>
+    </a>
+       
+</div>
+   
+}

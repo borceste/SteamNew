@@ -82,29 +82,46 @@
             <nav id="nav">
                 <ul>
                     <li class="current">@Html.ActionLink("Store", "Index", "Home")</li>
-                    <li>
-                        <a href="#">Dropdown</a>
-                        <ul>
-                            <li><a href="#">Lorem ipsum</a></li>
-                            <li><a href="#">Magna veroeros</a></li>
-                            <li><a href="#">Etiam nisl</a></li>
-                            <li>
-                                <a href="#">Sed consequat</a>
-                                <ul>
-                                    <li><a href="#">Lorem dolor</a></li>
-                                    <li><a href="#">Amet consequat</a></li>
-                                    <li><a href="#">Magna phasellus</a></li>
-                                    <li><a href="#">Etiam nisl</a></li>
-                                    <li><a href="#">Sed feugiat</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Nisl tempus</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="left-sidebar.html">Left Sidebar</a></li>
-                    <li><a href="right-sidebar.html">Right Sidebar</a></li>
-                    <li><a href="no-sidebar.html">No Sidebar</a></li>
+                    <li >@Html.ActionLink("Community","ShowUsers","Home")</li>
+                    
                 </ul>
+                <style>
+                    #account-settings {
+                        float: right;
+                        background: linear-gradient(270deg, rgba(241,255,0,0.35) 0%, rgba(170,0,255,0.8) 82%);
+                        padding: 0px 20px 0px 10px;
+                        z-index: -1;
+                    }
+
+                        #account-settings a {
+                            position: relative;
+                            z-index: 5;
+                            text-decoration: none;
+                            font-size: x-large;
+                            color: #ffffff;
+                            padding-right: 5px;
+                        }
+
+                    #main-background {
+                        padding: 15px;
+                    }
+                </style>
+
+                <div id="account-settings">
+                    @{
+                        if (!Context.User.Identity.IsAuthenticated)
+                        {
+
+                            @Html.ActionLink("Sign up", "Login", "Account")
+
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Welcome " + Context.User.Identity.Name, "Details", "ApplicationUsers", new { id = Context.User.Identity.Name })
+                            @Html.ActionLink("Log out", "LogOff", "Account")
+                        }
+                    }
+                </div>
             </nav>
 
         </section>

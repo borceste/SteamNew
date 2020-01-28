@@ -71,6 +71,23 @@ namespace Steam.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
+                "dbo.Reviews",
+                c => new
+                    {
+                        ReviewId = c.Int(nullable: false, identity: true),
+                        ApplicationUserId = c.String(maxLength: 128),
+                        GameId = c.Int(),
+                        review = c.String(),
+                        rating = c.Single(nullable: false),
+                        date = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ReviewId)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
+                .ForeignKey("dbo.Games", t => t.GameId)
+                .Index(t => t.ApplicationUserId)
+                .Index(t => t.GameId);
+            
+            CreateTable(
                 "dbo.Games",
                 c => new
                     {
@@ -110,23 +127,6 @@ namespace Steam.Migrations
                 .PrimaryKey(t => t.GenreId);
             
             CreateTable(
-                "dbo.Reviews",
-                c => new
-                    {
-                        ReviewId = c.Int(nullable: false, identity: true),
-                        ApplicationUserId = c.String(maxLength: 128),
-                        GameId = c.Int(),
-                        review = c.String(),
-                        rating = c.Single(nullable: false),
-                        date = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.ReviewId)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.Games", t => t.GameId)
-                .Index(t => t.ApplicationUserId)
-                .Index(t => t.GameId);
-            
-            CreateTable(
                 "dbo.AspNetUserRoles",
                 c => new
                     {
@@ -156,11 +156,7 @@ namespace Steam.Migrations
                         GameId = c.Int(nullable: false),
                         UserId = c.String(nullable: false, maxLength: 128),
                     })
-                .PrimaryKey(t => new { t.GameId, t.UserId })
-                .ForeignKey("dbo.Games", t => t.GameId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.GameId)
-                .Index(t => t.UserId);
+                .PrimaryKey(t => new { t.GameId, t.UserId });
             
             CreateTable(
                 "dbo.UserWishlistedGames",
@@ -169,11 +165,7 @@ namespace Steam.Migrations
                         GameId = c.Int(nullable: false),
                         UserId = c.String(nullable: false, maxLength: 128),
                     })
-                .PrimaryKey(t => new { t.GameId, t.UserId })
-                .ForeignKey("dbo.Games", t => t.GameId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.GameId)
-                .Index(t => t.UserId);
+                .PrimaryKey(t => new { t.GameId, t.UserId });
             
             CreateTable(
                 "dbo.GenreGames",
@@ -195,29 +187,21 @@ namespace Steam.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Reviews", "GameId", "dbo.Games");
-            DropForeignKey("dbo.Reviews", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.GenreGames", "Game_GameId", "dbo.Games");
             DropForeignKey("dbo.GenreGames", "Genre_GenreId", "dbo.Genres");
             DropForeignKey("dbo.GameImages", "GameId", "dbo.Games");
-            DropForeignKey("dbo.UserWishlistedGames", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.UserWishlistedGames", "GameId", "dbo.Games");
-            DropForeignKey("dbo.UserOwnedGames", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.UserOwnedGames", "GameId", "dbo.Games");
+            DropForeignKey("dbo.Reviews", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Comments", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.GenreGames", new[] { "Game_GameId" });
             DropIndex("dbo.GenreGames", new[] { "Genre_GenreId" });
-            DropIndex("dbo.UserWishlistedGames", new[] { "UserId" });
-            DropIndex("dbo.UserWishlistedGames", new[] { "GameId" });
-            DropIndex("dbo.UserOwnedGames", new[] { "UserId" });
-            DropIndex("dbo.UserOwnedGames", new[] { "GameId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
+            DropIndex("dbo.GameImages", new[] { "GameId" });
             DropIndex("dbo.Reviews", new[] { "GameId" });
             DropIndex("dbo.Reviews", new[] { "ApplicationUserId" });
-            DropIndex("dbo.GameImages", new[] { "GameId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -227,10 +211,10 @@ namespace Steam.Migrations
             DropTable("dbo.UserOwnedGames");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
-            DropTable("dbo.Reviews");
             DropTable("dbo.Genres");
             DropTable("dbo.GameImages");
             DropTable("dbo.Games");
+            DropTable("dbo.Reviews");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -55,6 +56,55 @@ namespace Steam.Controllers
         }
 
         // GET: Games/Create
+
+        [HttpGet]
+        public ActionResult AddWishlistedGame(int GameId, string UserId)
+        {
+            var model = new UserWishlistedGame();
+            model.GameId = GameId;
+            model.UserId = UserId;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddWishlistedGame(UserWishlistedGame model)
+        {
+            var search = db.UserWishlistedGames.Find(model.GameId, model.UserId);
+            if (search == null)
+            {
+                db.UserWishlistedGames.Add(model);
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index","Home");
+        }
+
+        [HttpGet]
+        public ActionResult AddOwnedGame(int GameId, string UserId)
+        {
+            var model = new UserOwnedGame();
+            model.GameId = GameId;
+            model.UserId = UserId;
+
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddOwnedGame(UserOwnedGame model)
+        {
+            var search = db.UserOwnedGames.Find(model.GameId, model.UserId);
+            if(search == null)
+            {
+                db.UserOwnedGames.Add(model);
+            }
+            var gameToUpdate = db.Games.Find(model.GameId);
+            int solded = gameToUpdate.getSold();
+            gameToUpdate.setSold(solded + 1);
+
+            db.Games.AddOrUpdate(gameToUpdate);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index","Home");
+        }
         public ActionResult Create()
         {
             return View();

@@ -1,4 +1,5 @@
 ﻿@using Steam.Models;
+@using Microsoft.AspNet.Identity;
 @model Steam.Models.Game
 @{
     ViewBag.Title = "Game";
@@ -14,6 +15,7 @@
     IEnumerable<GameImage> images = ViewData["gameImages"] as IEnumerable<GameImage>;
     IEnumerable<Review> reviews = ViewData["listReviews"] as IEnumerable<Review>;
     IEnumerable<ApplicationUser> users = ViewData["users"] as IEnumerable<ApplicationUser>;
+    string currentUserId = User.Identity.GetUserId();
 }
 @section MyScripts{
     <script type="text/javascript">
@@ -31,37 +33,55 @@
 
 <style>
 
-    .right-part div{
-        display:block;
-        float:left;
-        clear:left;
+    .right-part div {
+        display: block;
+        float: left;
+        clear: left;
     }
-    .user-info div{
+
+    .user-info div {
+        display: inline-block;
+    }
+
+    .review {
+        display: block;
+    }
+
+    .user-name {
+        position: relative;
+        top: -35px;
+    }
+
+    .review-part {
+        margin-top: 10px;
+        border-radius: 25px;
+        border: 1px solid #ffd1fe;
+        padding: 10px;
+    }
+
+    p {
+        color: #fff;
+    }
+    .add-to-cart{
+        border-radius:2px;
+    }
+    .middle-part div{
         display:inline-block;
-    }
-    .review{
-        display:block;
         
     }
-    .user-name{
-        position:relative;
-        top:-35px;
+    .middle-part{
+        width:50%;
+        padding-left:100px;
     }
-    .review-part{
-        margin-top:10px;
-        border-radius:25px;
-        border: 1px solid #ffd1fe;
-        padding:10px;
-
+    .price-class{
+        background-color:#000000;
+        height:39px;
+        width:120px;
+        text-align:center;
     }
-    p{
-        color:#fff;
+    .price {
+        
     }
-    
-
-
-
-
 </style>
 
 <div class="container">
@@ -110,9 +130,26 @@
             </div>
             <div class="other-info">
                 <p>DEVELOPER: @Model.developer</p>
-                
+
             </div>
         </div>
+    </div>
+
+    <div class="middle-part">
+        <a href="@Url.Action("AddWishlistedGame","Games", new { GameId = Model.GameId, UserId = currentUserId})">
+            <div class="add-to-wishlist">
+                <img src="https://i.ibb.co/RTq3Mqw/wishlist.png" />
+            </div>
+        </a>
+        <div class="price-class">
+            <p class="price">@(Model.price.ToString().Equals("0") ? "Free to Play" : String.Concat(Model.price.ToString(), "€")) </p>
+
+        </div>
+       <a href="@Url.Action("AddOwnedGame","Games", new { GameId = Model.GameId, UserId = currentUserId})">
+            <div class="add-to-cart">
+                <img src="https://i.ibb.co/jyLTbrj/addtocart.png" height="39px" />
+            </div>
+        </a>
     </div>
     <hr />
     <div class="lower-part">
@@ -121,52 +158,52 @@
             <p>
                 @Model.description
             </p>
-            
+
         </div>
-       <hr />
+        <hr />
         <p>REVIEWS</p>
         <div class="review-container">
-            @foreach(Review review in reviews)
+            @foreach (Review review in reviews)
             {
-             <div class="review-part">
-                <div class="user-info">
-                    @foreach (ApplicationUser user in users)
-                    {
-                        if (review.ApplicationUserId == user.Id)
+                <div class="review-part">
+                    <div class="user-info">
+                        @foreach (ApplicationUser user in users)
                         {
-                            <a href="@Url.Action("Details","ApplicationUsers", new { id = review.ApplicationUserId},null)">
+                            if (review.ApplicationUserId == user.Id)
+                            {
+                                <a href="@Url.Action("Details","ApplicationUsers", new { id = review.ApplicationUserId},null)">
 
-                                <div class="user-picture">
-                                    <img src="@user.avatar" width="50px" height="50px" />
-                                </div>
-                            </a>
+                                    <div class="user-picture">
+                                        <img src="@user.avatar" width="50px" height="50px" />
+                                    </div>
+                                </a>
 
-                            <a href="@Url.Action("Details","ApplicationUsers", new { id = review.ApplicationUserId},null)">
-                                <div class="user-name">
-                                    <p>
-                                        @user.nickname
-                                    </p>
-                                </div>
-                            </a>
-                            
+                                <a href="@Url.Action("Details","ApplicationUsers", new { id = review.ApplicationUserId},null)">
+                                    <div class="user-name">
+                                        <p>
+                                            @user.nickname
+                                        </p>
+                                    </div>
+                                </a>
+
+                            }
+
                         }
 
-                    }
+                    </div>
+                    <div class="review">
+                        <p>
+                            @review.review
+                        </p>
+                    </div>
+
 
                 </div>
-                <div class="review">
-                    <p>
-                        @review.review
-                    </p>
-                </div>
 
-
-            </div>
-                
 
             }
         </div>
-        
+
     </div>
 
 </div>

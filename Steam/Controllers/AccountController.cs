@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Steam.Models;
+using System.Data.Entity.Migrations;
 
 namespace Steam.Controllers
 {
@@ -20,6 +21,30 @@ namespace Steam.Controllers
 
         public AccountController()
         {
+        }
+
+        [HttpGet]
+        public ActionResult AddUserToRole()
+        {
+            var model = new AddToRoleModel();
+            model.roles.Add("Administrator");
+            model.roles.Add("User");
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddUserToRole(AddToRoleModel model)
+        {
+            try
+            {
+                var user = UserManager.FindByEmail(model.Email);
+                UserManager.AddToRole(user.Id, model.SelectedRole);
+                return RedirectToAction("Index", "Home");
+            }catch(Exception ex)
+            {
+                return HttpNotFound();
+            }
+
+            
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -151,18 +176,19 @@ namespace Steam.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, avatar = model.AvatarLink, info = model.Info, nickname = model.Nickname };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    ApplicationDbContext _db = new ApplicationDbContext();
+                    _db.Users.AddOrUpdate(user);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -387,8 +413,8 @@ namespace Steam.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

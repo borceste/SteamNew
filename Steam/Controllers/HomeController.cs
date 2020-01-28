@@ -23,31 +23,15 @@ namespace Steam.Controllers
             List<Game> gameList = SteamDb.Games.ToList();
                  
 
-            /*DataClass dataClass = new DataClass();
-            List<Game> games = dataClass.Games.ToList();
-            List<Game> newGames = new List<Game>();
-            foreach(Game g in games)
-            {
-                Game newGame = new Game();
-                newGame.Id = g.Id;
-                newGame.name = g.name;
-                newGame.price = g.price;
-                newGame.images = XmlHelper.FromXml<List<string>>(g.listOfImages);
-                newGame.coverImage = g.coverImage;
-                newGame.description = g.description;
-                newGame.developer = g.developer;
-                newGame.rating = g.rating;
-                newGame.reviews = g.reviews;
-                newGame.discount = g.discount;
-                newGame.genre = g.genre;
-                newGame.sold = g.sold;
-                newGame.dateAdded = g.dateAdded;
-                newGames.Add(newGame);
-                
-            }
-
-            return View(newGames);*/
             return View(gameList);
+        }
+        
+        public ActionResult ShowUsers()
+        {
+
+            ApplicationDbContext SteamDb = new ApplicationDbContext();
+            List<ApplicationUser> users = SteamDb.Users.ToList();
+            return View(users);
         }
 
         public PartialViewResult Tabs(String typeOfTab)

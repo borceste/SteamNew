@@ -26,9 +26,16 @@ namespace Steam.Controllers
 
             List<Comment> comments = db.Comments.Where(x => x.ApplicationUserId == id).ToList();
             List<ApplicationUser> users = db.Users.ToList();
+            List<Game> games = db.Games.ToList();
+            List<UserOwnedGame> ownedGames = db.UserOwnedGames.Where(x => x.UserId == id).ToList();
+            List<UserWishlistedGame> wishGames = db.UserWishlistedGames.Where(x => x.UserId == id).ToList();
 
             ViewData["comments"] = comments;
             ViewData["users"] = users;
+            ViewData["games"] = games;
+            ViewData["ownedGames"] = ownedGames;
+            ViewData["wishGames"] = wishGames;
+            
 
 
             if (id == null)

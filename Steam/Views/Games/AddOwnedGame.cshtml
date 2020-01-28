@@ -1,0 +1,21 @@
+﻿
+@using Microsoft.AspNet.Identity;
+@model Steam.Models.UserOwnedGame
+@{
+    ViewBag.Title = "Game";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/CSS/gameview.css" />
+<link href="~/Content/CSS/gameview.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm("AddOwnedGame", "Games"))
+{
+    @Html.HiddenFor(m => m.GameId)
+    @Html.HiddenFor(m => m.UserId)
+
+
+    <button type="sumbit" class="btn btn-default">Add Game</button>
+}

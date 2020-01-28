@@ -19,8 +19,8 @@ namespace Steam.Models
         public ApplicationUser() {
 			this.Comments = new HashSet<Comment>();
 			this.Reviews = new HashSet<Review>();
-			this.ownedGames = new HashSet<Game>();
-			this.wishlistedGames = new HashSet<Game>();
+			//this.ownedGames = new HashSet<Game>();
+			//this.wishlistedGames = new HashSet<Game>();
 
 			this.nickname = "";
 			this.avatar = "";
@@ -51,8 +51,8 @@ namespace Steam.Models
 		public virtual ICollection<Comment> Comments { get; set; }
 
 		public virtual ICollection<Review> Reviews { get; set; }
-		public virtual ICollection<Game> ownedGames { get; set; }
-		public virtual ICollection<Game> wishlistedGames { get; set; }
+		//public virtual ICollection<Game> ownedGames { get; set; }
+		//public virtual ICollection<Game> wishlistedGames { get; set; }
 
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
 		{
@@ -74,6 +74,8 @@ namespace Steam.Models
 		public DbSet<Genre> Genres { get; set; }
 		public DbSet<Comment> Comments { get; set; }
         public DbSet<GameImage> GameImages { get; set; }
+        public DbSet<UserOwnedGame> UserOwnedGames { get; set; }
+        public DbSet<UserWishlistedGame> UserWishlistedGames { get; set; }
 
         public ApplicationDbContext()
 			: base("DefaultConnection", throwIfV1Schema: false)
@@ -88,8 +90,11 @@ namespace Steam.Models
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
+            modelBuilder.Entity<UserOwnedGame>().HasKey(table => new { table.GameId, table.UserId });
+            modelBuilder.Entity<UserWishlistedGame>().HasKey(table => new { table.GameId, table.UserId });
 
-            modelBuilder.Entity<Game>()
+
+            /*modelBuilder.Entity<Game>()
                 .HasMany(c => c.ApplicationUsersOwned)
                 .WithMany(c => c.ownedGames)
                 .Map(ow =>
@@ -108,7 +113,7 @@ namespace Steam.Models
                     m.MapLeftKey("GameId");
                     m.MapRightKey("UserId");
                 });
-
+                */
             base.OnModelCreating(modelBuilder);
 		}
 

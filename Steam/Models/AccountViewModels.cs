@@ -79,6 +79,18 @@ namespace Steam.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Avatar Link")]
+        public string AvatarLink { get; set; }
+
+        [Required]
+        [Display(Name = "User's info")]
+        public string Info { get; set; }
+
+        [Required]
+        [Display(Name = "Nickname")]
+        public string Nickname { get; set; }
     }
 
     public class ResetPasswordViewModel
